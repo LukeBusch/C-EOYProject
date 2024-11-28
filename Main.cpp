@@ -1,5 +1,6 @@
 #include<iostream>
 #include "Stock.h"
+#include "Trader.h"
 
 int main() {
 // Tests to see if stock is working
@@ -14,4 +15,9 @@ std::cout << share.getPrice() << "\n";
 std::cout << share.getQuantity() << "\n";
 std::cout << share.getSymbol() << "\n";
 
+//Tests to see if trader working
+ Trader trader("Luke", 10000.0); // Example trader
+    trader.viewAccountBalance();
+
+return 0;
 }
