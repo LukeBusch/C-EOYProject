@@ -10,6 +10,7 @@ void displayMenu() {
     std::cout << "4. Create a Stock\n";
     std::cout << "5. View Stock Details\n";
     std::cout << "6. Update Stock Details\n";
+    std::cout << "7. View Trader Portfolio\n";
     std::cout << "0. Exit\n";
     std::cout << "Enter your choice: ";
 }
@@ -46,7 +47,7 @@ int main() {
             case 3: {
                 if (trader) {
                     double balance;
-                    std::cout << "Enter new balance: ";
+                    std::cout << "Enter amount to add or subtract using negative: ";
                     std::cin >> balance;
                     trader->setAccountBalance(balance);
                     std::cout << "Balance updated successfully.\n";
@@ -65,9 +66,14 @@ int main() {
                 std::cin >> price;
                 std::cout << "Enter stock quantity: ";
                 std::cin >> quantity;
-                stock = new Stock(symbol, price, quantity);
-                std::cout << "Stock created successfully.\n";
-                break;
+                if (!trader) {
+    std::cout << "Create a trader first to manage this stock.\n";
+} else {
+    stock = new Stock(symbol, price, quantity);
+    trader->buyStock(symbol, quantity);
+    std::cout << "Stock created and added to trader's portfolio successfully.\n";
+}
+
             }
             case 5: {
                 if (stock) {
@@ -93,6 +99,15 @@ int main() {
                 }
                 break;
             }
+            case 7: {
+    if (trader) {
+        trader->displayPortfolio();
+    } else {
+        std::cout << "No trader available. Create a trader first.\n";
+    }
+    break;
+}
+
             case 0:
                 std::cout << "Exiting\n";
                 break;
@@ -102,8 +117,11 @@ int main() {
         }
     } while (choice != 0);
 
-    delete trader;
-    delete stock;
+    if (trader) delete trader;
+    if (stock) delete stock;
 
     return 0;
 }
+
+
+

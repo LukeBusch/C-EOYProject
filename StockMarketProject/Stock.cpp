@@ -18,4 +18,11 @@ void Stock::displayTheStocks() const {
 
     std::cout <<"Stock Symbol: " << symbol<< ", Cost Per Unit: $" << price << ", Quantity: " << quantity << std::endl;
 
+
+}
+
+void Stock::fluctuatePrice() {
+    double change = ((std::rand() % 21) - 10) / 100.0; 
+    price += price * change;
+    if (price < 1) price = 1;  
 }

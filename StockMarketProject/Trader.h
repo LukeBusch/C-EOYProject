@@ -28,6 +28,9 @@ public:
     void sellStock(const std::string &symbol, int quantity);
     void displayPortfolio() const;
     void viewAccountBalance() const;
+
+     double calculatePortfolioValue() const;
+
 };
 
 #endif

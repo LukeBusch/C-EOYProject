@@ -10,6 +10,12 @@ private:
     double price;
 
 public:
+
+    bool operator==(const Stock &other) const {
+    return symbol == other.symbol && price == other.price && quantity == other.quantity;
+}
+
+
     //This is the constructor format Im gonna use
     Stock(const std::string &symbol, double price, int quantity);
 
@@ -25,7 +31,7 @@ public:
 
     //stub for function, only planning on one for this class
     void displayTheStocks() const;
-
+    void fluctuatePrice();
 };
 
 #endif
